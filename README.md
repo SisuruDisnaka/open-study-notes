@@ -6,9 +6,9 @@
 
 *A free, open-source collection of beautifully organized Computer Science notes, tutorials, visual explanations, coding examples, quizzes, and challenges.*
 
-![GitHub stars](https://img.shields.io/github/stars/USERNAME/OpenStudyNotes?style=for-the-badge)
+<!-- ![GitHub stars](https://img.shields.io/github/stars/USERNAME/OpenStudyNotes?style=for-the-badge)
 ![GitHub forks](https://img.shields.io/github/forks/USERNAME/OpenStudyNotes?style=for-the-badge)
-![GitHub license](https://img.shields.io/github/license/USERNAME/OpenStudyNotes?style=for-the-badge)
+![GitHub license](https://img.shields.io/github/license/USERNAME/OpenStudyNotes?style=for-the-badge) -->
 ![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-brightgreen?style=for-the-badge)
 
 ⭐ **If you find this project helpful, consider giving it a star!**
@@ -16,8 +16,6 @@
 </div>
 
 ---
-
-## 🌟 About
 
 **OpenStudyNotes** is an open-source learning repository designed to help students, self-learners, and developers master Computer Science concepts through **clear explanations**, **interactive examples**, and **hands-on practice**.
 
@@ -29,7 +27,71 @@ Our goal is simple:
 
 ---
 
-## ✨ Features
+---
+
+# 🌱 Learning Journey
+
+## 💻 Programming Languages
+
+- 📘 [C Programming](./C/README.md)
+- ☕ Java *(Coming Soon)*
+- 🐍 Python *(Coming Soon)*
+- 🟨 JavaScript *(Coming Soon)*
+
+---
+
+## 🌐 Web Development
+
+- 🌍 HTML *(Coming Soon)*
+- 🎨 CSS *(Coming Soon)*
+- ⚛️ React *(Coming Soon)*
+- ▲ Next.js *(Coming Soon)*
+
+---
+
+## 🖥️ Backend Development
+
+- 🍃 Spring Boot *(Coming Soon)*
+- 🗄️ SQL *(Coming Soon)*
+
+---
+
+## ⚙️ DevOps & Tools
+
+- 🐧 Linux *(Coming Soon)*
+- 🌿 Git *(Coming Soon)*
+- 🐳 Docker *(Coming Soon)*
+- ☸️ Kubernetes *(Coming Soon)*
+- 🚀 DevOps *(Coming Soon)*
+
+---
+
+## 🧠 Computer Science Fundamentals
+
+- 🌐 Networking *(Coming Soon)*
+- 💾 Operating Systems *(Coming Soon)*
+- 🗃️ DBMS *(Coming Soon)*
+- 📊 Data Structures *(Coming Soon)*
+- 🧩 Algorithms *(Coming Soon)*
+- 🏛️ Object-Oriented Programming *(Coming Soon)*
+- 🎨 Design Patterns *(Coming Soon)*
+- 💼 Software Engineering *(Coming Soon)*
+
+---
+
+## 🤖 Artificial Intelligence
+
+- 🤖 Artificial Intelligence *(Coming Soon)*
+- 🧠 Machine Learning *(Coming Soon)*
+
+---
+
+## 📚 Resources
+- 📖 Resources *(Coming Soon)*
+
+---
+
+# ✨ Features
 
 * 📖 Beginner-friendly explanations
 * 🧠 Concept-first learning
@@ -62,32 +124,20 @@ OpenStudyNotes/
 │   └── images/
 │
 ├── C/
-├── C++/
-├── Java/
-├── Python/
-├── JavaScript/
-├── TypeScript/
-├── HTML/
-├── CSS/
-├── React/
-├── Next.js/
-├── SpringBoot/
-├── SQL/
-├── Linux/
-├── Git/
-├── Docker/
-├── Kubernetes/
-├── DevOps/
-├── Networking/
-├── OperatingSystems/
-├── DBMS/
-├── DataStructures/
-├── Algorithms/
-├── OOP/
-├── DesignPatterns/
-├── SoftwareEngineering/
-├── AI/
-├── MachineLearning/
+│   ├── README.md
+│   ├── 01-Programming-Fundamentals.md
+│   ├── 02-Data-Types-Variables-IO.md
+│   ├── 03-Functions-and-Modular-Programming.md
+│   ├── 04-Operators-and-Type-Conversion.md
+│   ├── 05-Pointers-and-Pass-by-Reference.md
+│   ├── 06-Decision-Making.md
+│   ├── 07-Loops-and-Unary-Operators.md
+│   ├── 08-Character-Processing.md
+│   ├── 09-Arrays.md
+│   ├── 10-Two-Dimensional-Arrays.md
+│   ├── 11-Strings.md
+│   ├── 12-File-Handling.md
+│   └── 13-Structures.md
 └── Resources/
 ```
 
@@ -96,37 +146,37 @@ OpenStudyNotes/
 # 🗺️ Learning Roadmap
 
 ```text
-Programming Fundamentals
+ Programming Fundamentals
           │
           ▼
-Programming Languages
+ Programming Languages
           │
           ▼
 Object-Oriented Programming
           │
           ▼
-Data Structures
+    Data Structures
           │
           ▼
-Algorithms
+      Algorithms
           │
           ▼
-Databases
+      Databases
           │
           ▼
-Operating Systems
+  Operating Systems
           │
           ▼
-Computer Networks
+  Computer Networks
           │
           ▼
-Web Development
+    Web Development
           │
           ▼
-DevOps & Cloud
+    DevOps & Cloud
           │
           ▼
-Advanced Topics
+    Advanced Topics
 ```
 
 ---
@@ -198,7 +248,7 @@ Please read **CONTRIBUTING.md** before opening a Pull Request.
 
 We believe quality education should be accessible to everyone.
 
-OpenStudyNotes aims to become a trusted, community-driven Computer Science handbook where anyone can learn—from their first "Hello, World!" to advanced software engineering concepts.
+OpenStudyNotes aims to become a trusted, community-driven Computer Science handbook where anyone can learn-from their first "Hello, World!" to advanced software engineering concepts.
 
 ---
 
@@ -223,8 +273,14 @@ This project is licensed under the **MIT License**.
 See the `LICENSE` file for details.
 
 ---
-
+<br>
 <div align="center">
+
+**OpenStudyNotes** <br>
+was created by  
+**Sisuru Disnaka Samarathunga**
+
+Maintained with the help of contributors from the global developer community.
 
 ### 💙 Happy Learning!
 
