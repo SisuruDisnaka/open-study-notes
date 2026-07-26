@@ -19,7 +19,7 @@
 
 ## 🌟 Why Learn This?
 
-- Without arrays, storing 100 students' marks would mean declaring 100 separate variables — `mark1`, `mark2`, all the way to `mark100` — completely unmanageable, and impossible to loop over.
+- Without arrays, storing 100 students' marks would mean declaring 100 separate variables - `mark1`, `mark2`, all the way to `mark100` - completely unmanageable, and impossible to loop over.
 - Arrays are the first "collection" data structure you'll learn.
 - They're the foundation every later data structure (2D arrays, strings, structures, even linked lists) builds on top of.
 
@@ -33,7 +33,7 @@ You should know
 
 ✔ Why array indices start at 0, and why going out of bounds is dangerous
 
-✔ How arrays are passed to functions — and why they behave differently from plain variables
+✔ How arrays are passed to functions - and why they behave differently from plain variables
 
 ✔ How to loop through an array to process every element
 
@@ -66,15 +66,15 @@ You should know
 
 ## 🧠 Before We Start
 
-Make sure you're comfortable with [loops](./07-Loops-and-Unary-Operators.md) and [pointers](./05-Pointers-and-Pass-by-Reference.md) — arrays lean heavily on both.
+Make sure you're comfortable with [loops](./07-Loops-and-Unary-Operators.md) and [pointers](./05-Pointers-and-Pass-by-Reference.md) - arrays lean heavily on both.
 
 ---
 
 ## 💡 Imagine This...
 
-- Imagine a row of exactly 5 lockers in a school hallway, numbered starting from **0**, not 1 — locker 0, locker 1, locker 2, locker 3, locker 4.
+- Imagine a row of exactly 5 lockers in a school hallway, numbered starting from **0**, not 1 - locker 0, locker 1, locker 2, locker 3, locker 4.
 - Each locker can hold one item of the same general kind (say, a textbook).
-- If you try to open "locker 5" on a 5-locker row, you're not just going to find it empty — you might be reaching into the *neighboring classroom's* wall, since that space was never allocated to you.
+- If you try to open "locker 5" on a 5-locker row, you're not just going to find it empty - you might be reaching into the *neighboring classroom's* wall, since that space was never allocated to you.
 - That's exactly what happens when you access `arr[5]` on a 5-element array: it doesn't politely fail, it silently reads or corrupts memory that isn't yours.
 
 ---
@@ -84,17 +84,17 @@ Make sure you're comfortable with [loops](./07-Loops-and-Unary-Operators.md) and
 An **array** stores many values of the *same type*, side by side in memory, under one name.
 
 ```c
-int marks[5];                          // uninitialized — contains GARBAGE values!
+int marks[5];                          // uninitialized - contains GARBAGE values!
 int numbers[5] = {10, 20, 30, 40, 50}; // explicit size
-int numbers[] = {10, 20, 30, 40, 50};  // implicit size — the compiler counts (5) for you
-int numbers[5] = {10, 20};             // partial init — remaining elements become 0
+int numbers[] = {10, 20, 30, 40, 50};  // implicit size - the compiler counts (5) for you
+int numbers[5] = {10, 20};             // partial init - remaining elements become 0
 ```
 
-> **Rule:** Always initialize your arrays. Uninitialized elements don't default to 0 — they hold whatever garbage bits happened to be sitting in that memory already.
+> **Rule:** Always initialize your arrays. Uninitialized elements don't default to 0 - they hold whatever garbage bits happened to be sitting in that memory already.
 
 **Indexing starts at 0.** For a 5-element array, valid indices are `0` through `4`.
 
-> ⚠️ **Classic exam trap:** `marks[5]` on a size-5 array is **out of bounds** — undefined behavior. The compiler often won't stop you; it'll just silently read or corrupt memory it shouldn't.
+> ⚠️ **Classic exam trap:** `marks[5]` on a size-5 array is **out of bounds** - undefined behavior. The compiler often won't stop you; it'll just silently read or corrupt memory it shouldn't.
 
 ```c
 for (i = 0; i < 5; i++) scanf("%d", &marks[i]);
@@ -103,14 +103,14 @@ for (i = 0; i < 5; i++) printf("%d ", marks[i]);
 
 **Compound assignment shorthand:** `sum += marks[i];` is identical to `sum = sum + marks[i];` (also works with `-=`, `*=`, `/=`, `%=`).
 
-### Passing Arrays to Functions — a Key Conceptual Leap
+### Passing Arrays to Functions - a Key Conceptual Leap
 
 ```c
 void change(int arr[]) { arr[0] = 100; }
 change(numbers);   // numbers[0] IS modified back in main() too!
 ```
 
-> **Why:** arrays are passed by **address automatically** — no `&` needed. The function operates directly on the original array, unlike a plain `int`/`float`/`char`, which is passed by value (a copy).
+> **Why:** arrays are passed by **address automatically** - no `&` needed. The function operates directly on the original array, unlike a plain `int`/`float`/`char`, which is passed by value (a copy).
 
 ```c
 int findSum(int arr[], int size) {
@@ -120,14 +120,14 @@ int findSum(int arr[], int size) {
 }
 ```
 
-> **Common mistake:** forgetting to also pass the `size` — a C array doesn't "know" its own length once it's inside a function, so you must tell it explicitly.
+> **Common mistake:** forgetting to also pass the `size` - a C array doesn't "know" its own length once it's inside a function, so you must tell it explicitly.
 
 ---
 
 ## 🔍 Behind the Scenes
 
 - An array is really just a single contiguous block of memory, with the compiler doing the addressing math for you.
-- `arr[i]` is literally computed as `*(arr + i)` — take the array's starting address, move forward `i` elements (each `sizeof(type)` bytes wide), and dereference.
+- `arr[i]` is literally computed as `*(arr + i)` - take the array's starting address, move forward `i` elements (each `sizeof(type)` bytes wide), and dereference.
 - This is exactly why array indexing and pointer arithmetic are two faces of the same underlying mechanism.
 - It's also why passing an array to a function is really just passing the address of its first element.
 
@@ -181,7 +181,7 @@ Total = 150
 3. Inside `findSum`, the loop adds each element to `sum`.
 4. `150` is returned and printed.
 
-**Why it works:** because we explicitly pass `size` alongside the array — without it, `findSum` would have no way of knowing where the array actually ends.
+**Why it works:** because we explicitly pass `size` alongside the array - without it, `findSum` would have no way of knowing where the array actually ends.
 
 ---
 
@@ -226,29 +226,29 @@ Swap the first and last elements, then the second and second-to-last, and so on,
 | Concept | Where it shows up |
 |---|---|
 | Arrays | Every spreadsheet application stores rows of data in array-like structures under the hood |
-| Bounds checking | Buffer overflow vulnerabilities — a major category of real security exploits — are caused by exactly the out-of-bounds access this lesson warns about |
-| Passing arrays by address | Image-processing libraries pass large pixel arrays to functions without copying, for performance reasons — the same mechanism you just learned |
+| Bounds checking | Buffer overflow vulnerabilities - a major category of real security exploits - are caused by exactly the out-of-bounds access this lesson warns about |
+| Passing arrays by address | Image-processing libraries pass large pixel arrays to functions without copying, for performance reasons - the same mechanism you just learned |
 
 ---
 
 ## 🧠 Memory Tricks
 
 - **Index 0 = "zero steps from the start,"** not "the first item's number."
-- **Arrays are automatically passed by address — no `&` needed, unlike plain variables.**
-- **Always pass the size alongside the array — it doesn't carry that information with it.**
+- **Arrays are automatically passed by address - no `&` needed, unlike plain variables.**
+- **Always pass the size alongside the array - it doesn't carry that information with it.**
 
 ---
 
 ## 🎉 Fun Fact
 
-The famous **Heartbleed** security bug (2014), which exposed sensitive data on a huge portion of the internet's servers, was ultimately caused by a buffer over-read — reading past the end of an allocated memory block, precisely the kind of bug that comes from ignoring array bounds. A "beginner mistake" at massive, real-world scale.
+The famous **Heartbleed** security bug (2014), which exposed sensitive data on a huge portion of the internet's servers, was ultimately caused by a buffer over-read - reading past the end of an allocated memory block, precisely the kind of bug that comes from ignoring array bounds. A "beginner mistake" at massive, real-world scale.
 
 ---
 
 ## ⚠ Common Mistakes
 
 ```c
-// ❌ Wrong — off-by-one, index 5 doesn't exist on a size-5 array
+// ❌ Wrong - off-by-one, index 5 doesn't exist on a size-5 array
 int arr[5];
 for (int i = 0; i <= 5; i++) { arr[i] = i; }   // i == 5 is out of bounds!
 
@@ -261,15 +261,15 @@ for (int i = 0; i < 5; i++) { arr[i] = i; }
 
 ## 🚫 Beginner Traps
 
-- **"Arrays automatically know their own size once passed to a function."** False — you must pass the size as a separate parameter.
-- **"`int arr[5];` initializes all elements to 0."** False — uninitialized local arrays hold garbage values, not zeros, unless you explicitly initialize them.
+- **"Arrays automatically know their own size once passed to a function."** False - you must pass the size as a separate parameter.
+- **"`int arr[5];` initializes all elements to 0."** False - uninitialized local arrays hold garbage values, not zeros, unless you explicitly initialize them.
 
 ---
 
 ## 📌 Exam Tips
 
-- For `int a[5]`, valid indices are `0` to `4` — a favorite "spot the bug" question deliberately uses `a[5]`.
-- When a function needs to modify the caller's array, remember it happens automatically — no `&` required, unlike ordinary variables.
+- For `int a[5]`, valid indices are `0` to `4` - a favorite "spot the bug" question deliberately uses `a[5]`.
+- When a function needs to modify the caller's array, remember it happens automatically - no `&` required, unlike ordinary variables.
 - Always check whether a loop uses `<` or `<=` against the array size.
 
 ---
@@ -277,10 +277,10 @@ for (int i = 0; i < 5; i++) { arr[i] = i; }
 ## 🎤 Interview Questions
 
 **Q: Why are arrays passed to functions "by reference" automatically in C, without needing `&`?**
-> Because an array name decays into a pointer to its first element in most expressions, including function calls — so what's actually passed is already an address, achieving the same effect as pass-by-reference without any extra syntax.
+> Because an array name decays into a pointer to its first element in most expressions, including function calls - so what's actually passed is already an address, achieving the same effect as pass-by-reference without any extra syntax.
 
 **Q: What is undefined behavior, and how does array indexing relate to it?**
-> Undefined behavior means the C standard places no requirements on what happens — accessing an index outside an array's allocated bounds (like `arr[5]` on a 5-element array) reads or writes memory that may belong to something else entirely, and the compiler is not required to catch or prevent it.
+> Undefined behavior means the C standard places no requirements on what happens - accessing an index outside an array's allocated bounds (like `arr[5]` on a 5-element array) reads or writes memory that may belong to something else entirely, and the compiler is not required to catch or prevent it.
 
 ---
 
@@ -336,7 +336,7 @@ for (int i = 0; i < 5; i++) { arr[i] = i; }
 
 <details><summary>✅ Reveal Guidance</summary>
 
-A plain `int` is passed by value — the function receives an independent copy, so changes don't affect the original. An array name decays into a pointer to its first element, so what's actually passed is the array's address; the function operates on the same memory as the original, so any modifications are visible back in the caller.
+A plain `int` is passed by value - the function receives an independent copy, so changes don't affect the original. An array name decays into a pointer to its first element, so what's actually passed is the array's address; the function operates on the same memory as the original, so any modifications are visible back in the caller.
 </details>
 
 ---
@@ -349,13 +349,13 @@ You now understand how to declare, initialize, index, and loop through arrays, w
 
 ## 🚀 What's Next?
 
-Next: **Two-Dimensional Arrays** — arrays of arrays, the natural structure for grids, tables, and matrices.
+Next: **Two-Dimensional Arrays** - arrays of arrays, the natural structure for grids, tables, and matrices.
 
 ---
 
 ## 📚 References
 
-- Kernighan, B. W., & Ritchie, D. M. — *The C Programming Language* (2nd Edition), Prentice Hall.
+- Kernighan, B. W., & Ritchie, D. M. - *The C Programming Language* (2nd Edition), Prentice Hall.
 
 ---
 

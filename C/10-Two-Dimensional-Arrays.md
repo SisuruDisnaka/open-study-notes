@@ -19,9 +19,9 @@
 
 ## 🌟 Why Learn This?
 
-- A single row of lockers (a normal array) is great for a list — but what about a spreadsheet, a chessboard, or a photo made of pixels arranged in rows and columns?
+- A single row of lockers (a normal array) is great for a list - but what about a spreadsheet, a chessboard, or a photo made of pixels arranged in rows and columns?
 - For that, you need a **grid**.
-- A 2D array is simply an array of arrays — the natural way to represent any data that has two dimensions: rows and columns.
+- A 2D array is simply an array of arrays - the natural way to represent any data that has two dimensions: rows and columns.
 
 ---
 
@@ -70,15 +70,15 @@ You should be comfortable with regular (1D) arrays and nested loops from [Lesson
 
 ## 💡 Imagine This...
 
-- Imagine a bingo hall with rows of seats, and every seat labeled by row and seat number — "Row 2, Seat 3."
+- Imagine a bingo hall with rows of seats, and every seat labeled by row and seat number - "Row 2, Seat 3."
 - To find any specific person, you need *two* numbers, not one.
-- A 2D array works exactly the same way: `marks[2][3]` means "row 2, column 3" — you always need both coordinates to locate a single value in the grid.
+- A 2D array works exactly the same way: `marks[2][3]` means "row 2, column 3" - you always need both coordinates to locate a single value in the grid.
 
 ---
 
 ## 📖 Core Concepts
 
-A 2D array is a grid — rows and columns:
+A 2D array is a grid - rows and columns:
 
 ```c
 int marks[3][4];   // 3 rows, 4 columns = 12 total elements
@@ -96,7 +96,7 @@ marks[2][3];         // row 2, column 3
 ```c
 int table[2][3] = { {1,2,3}, {4,5,6} };   // full, grouped by row
 int table[2][3] = {1,2,3,4,5,6};          // compact, same result
-int table[2][3] = { {1,2}, {4} };         // partial — anything missing becomes 0
+int table[2][3] = { {1,2}, {4} };         // partial - anything missing becomes 0
 ```
 
 ### Nested Loops
@@ -111,11 +111,11 @@ for (int i = 0; i < 3; i++) {
 }
 ```
 
-### Passing 2D Arrays to Functions — a Must-Know Rule
+### Passing 2D Arrays to Functions - a Must-Know Rule
 
 ```c
-void printMatrix(int a[][3], int rows) { ... }   // CORRECT — column size is given
-void display(int a[][]) { ... }                   // WRONG — compiler needs the column size!
+void printMatrix(int a[][3], int rows) { ... }   // CORRECT - column size is given
+void display(int a[][]) { ... }                   // WRONG - compiler needs the column size!
 ```
 
 > **Trick:** for a 2D array parameter, the **column count is mandatory**. The row count can be passed as a separate parameter, or omitted entirely from the brackets.
@@ -124,9 +124,9 @@ void display(int a[][]) { ... }                   // WRONG — compiler needs th
 
 ## 🔍 Behind the Scenes
 
-- A 2D array isn't actually stored as a grid in memory — memory is fundamentally one long strip of addresses.
+- A 2D array isn't actually stored as a grid in memory - memory is fundamentally one long strip of addresses.
 - C stores 2D arrays in **row-major order**: the entire first row, followed immediately by the entire second row, and so on, all laid flat, back to back.
-- This is precisely *why* the compiler needs to know the column size in advance — to calculate the correct offset for `a[i][j]`, it needs to know how many elements to "skip" to get past each full row.
+- This is precisely *why* the compiler needs to know the column size in advance - to calculate the correct offset for `a[i][j]`, it needs to know how many elements to "skip" to get past each full row.
 
 ---
 
@@ -206,12 +206,12 @@ Write a program that reads a 3×3 grid of integers from the user and prints the 
 
 ## 🎯 Mini Challenge
 
-Write a function `int trace(int a[][3], int n)` that computes the **trace** of a square matrix — the sum of its diagonal elements (`a[0][0] + a[1][1] + a[2][2]`, generalized for any size `n`).
+Write a function `int trace(int a[][3], int n)` that computes the **trace** of a square matrix - the sum of its diagonal elements (`a[0][0] + a[1][1] + a[2][2]`, generalized for any size `n`).
 
 <details>
 <summary>💡 Need a hint?</summary>
 
-The diagonal is exactly where the row index equals the column index — `a[i][i]`.
+The diagonal is exactly where the row index equals the column index - `a[i][i]`.
 </details>
 
 ---
@@ -228,49 +228,49 @@ The diagonal is exactly where the row index equals the column index — `a[i][i]
 
 ## 🧠 Memory Tricks
 
-- **Outer loop = rows, inner loop = columns** — "Row before column, like reading a book top to bottom, then left to right within a line."
-- **Column size is mandatory in a 2D array function parameter** — the compiler needs it to do its row-skipping math.
+- **Outer loop = rows, inner loop = columns** - "Row before column, like reading a book top to bottom, then left to right within a line."
+- **Column size is mandatory in a 2D array function parameter** - the compiler needs it to do its row-skipping math.
 
 ---
 
 ## 🎉 Fun Fact
 
-Some programming languages (like Fortran) store 2D arrays in **column-major** order instead of row-major — the opposite of C. This isn't just trivia: numerical computing libraries have to be extremely careful when passing data between C and Fortran-based code (many scientific libraries mix both), because reading a column-major array as if it were row-major produces a completely scrambled, transposed result.
+Some programming languages (like Fortran) store 2D arrays in **column-major** order instead of row-major - the opposite of C. This isn't just trivia: numerical computing libraries have to be extremely careful when passing data between C and Fortran-based code (many scientific libraries mix both), because reading a column-major array as if it were row-major produces a completely scrambled, transposed result.
 
 ---
 
 ## ⚠ Common Mistakes
 
 ```c
-// ❌ Wrong — swapped loop bounds, mixing up rows and columns
+// ❌ Wrong - swapped loop bounds, mixing up rows and columns
 for (int i = 0; i < 3; i++) {        // rows = 3
     for (int j = 0; j < 3; j++) {    // but the array is only 2 columns wide!
         printf("%d ", a[i][j]);
     }
 }
 
-// ✅ Correct — match loop bounds exactly to the array's actual dimensions
+// ✅ Correct - match loop bounds exactly to the array's actual dimensions
 for (int i = 0; i < 2; i++) {        // rows = 2
     for (int j = 0; j < 3; j++) {    // columns = 3
         printf("%d ", a[i][j]);
     }
 }
 ```
-*Why:* mismatching your loop bounds against the array's real dimensions causes out-of-bounds access, exactly like the 1D array bug from the previous lesson — just in two dimensions now.
+*Why:* mismatching your loop bounds against the array's real dimensions causes out-of-bounds access, exactly like the 1D array bug from the previous lesson - just in two dimensions now.
 
 ---
 
 ## 🚫 Beginner Traps
 
-- **"You can omit both dimensions when passing a 2D array to a function."** False — the column size is always required so the compiler can calculate memory offsets correctly.
-- **"2D arrays are stored as an actual grid, with rows in separate memory blocks."** False — they're stored as one continuous strip of memory, row after row (row-major order).
+- **"You can omit both dimensions when passing a 2D array to a function."** False - the column size is always required so the compiler can calculate memory offsets correctly.
+- **"2D arrays are stored as an actual grid, with rows in separate memory blocks."** False - they're stored as one continuous strip of memory, row after row (row-major order).
 
 ---
 
 ## 📌 Exam Tips
 
-- Always match the outer loop to rows and the inner loop to columns — question setters frequently swap them deliberately to test attentiveness.
-- Memorize the exact function signature pattern: `void func(int a[][COLS], int rows)` — the column count in brackets, non-negotiable.
+- Always match the outer loop to rows and the inner loop to columns - question setters frequently swap them deliberately to test attentiveness.
+- Memorize the exact function signature pattern: `void func(int a[][COLS], int rows)` - the column count in brackets, non-negotiable.
 - Trace `a[i][j]` questions by drawing the actual grid on paper, labeling rows and columns explicitly.
 
 ---
@@ -281,7 +281,7 @@ for (int i = 0; i < 2; i++) {        // rows = 2
 > Because the compiler needs to know how many elements make up a single row in order to calculate the correct memory offset for any `array[i][j]` access. The row count is only used for loop bounds and can be passed as a separate integer parameter instead.
 
 **Q: How are 2D arrays actually stored in memory in C?**
-> In row-major order — the entire first row is stored contiguously, immediately followed by the entire second row, and so on, all as one continuous block of memory, not as separate grid cells.
+> In row-major order - the entire first row is stored contiguously, immediately followed by the entire second row, and so on, all as one continuous block of memory, not as separate grid cells.
 
 ---
 
@@ -337,7 +337,7 @@ for (int i = 0; i < 2; i++) {        // rows = 2
 
 <details><summary>✅ Reveal Guidance</summary>
 
-Because 2D arrays are stored as one continuous strip of memory in row-major order, and the compiler needs to know how many elements make up one row in order to correctly calculate the memory offset for any `a[i][j]` access — without the column size, it can't determine where each row begins.
+Because 2D arrays are stored as one continuous strip of memory in row-major order, and the compiler needs to know how many elements make up one row in order to correctly calculate the memory offset for any `a[i][j]` access - without the column size, it can't determine where each row begins.
 </details>
 
 ---
@@ -350,13 +350,13 @@ You now know how to declare, initialize, index, and loop through 2D arrays, how 
 
 ## 🚀 What's Next?
 
-Next: **Strings** — you'll discover that a C string is really just a character array with one special extra rule.
+Next: **Strings** - you'll discover that a C string is really just a character array with one special extra rule.
 
 ---
 
 ## 📚 References
 
-- Kernighan, B. W., & Ritchie, D. M. — *The C Programming Language* (2nd Edition), Prentice Hall.
+- Kernighan, B. W., & Ritchie, D. M. - *The C Programming Language* (2nd Edition), Prentice Hall.
 
 ---
 
