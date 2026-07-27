@@ -66,42 +66,42 @@ You should know
 
 ## 🧠 Before We Start
 
-You should be comfortable with arrays ([Lesson 9](./09-Arrays.md)) and characters ([Lesson 8](./08-Character-Processing.md)) — a string is where both ideas merge into one.
+You should be comfortable with arrays ([Lesson 9](./09-Arrays.md)) and characters ([Lesson 8](./08-Character-Processing.md)) - a string is where both ideas merge into one.
 
 ---
 
 ## 💡 Imagine This...
 
-- Imagine a sentence written on a strip of paper, one letter per box, with no fixed end to the strip — how do you know where the sentence actually stops?
+- Imagine a sentence written on a strip of paper, one letter per box, with no fixed end to the strip - how do you know where the sentence actually stops?
 - You'd need a special "stop here" marker at the end, or you'd risk reading garbage text off the unused part of the strip forever.
-- That's exactly what the **null character `'\0'`** does in a C string — it's the "stop here" marker, and every string-processing function relies on finding it to know where the real text ends.
+- That's exactly what the **null character `'\0'`** does in a C string - it's the "stop here" marker, and every string-processing function relies on finding it to know where the real text ends.
 
 ---
 
 ## 📖 Core Concepts
 
-A string is nothing magical — it's just a character array that ends with a special sentinel: the **null character `'\0'`**.
+A string is nothing magical - it's just a character array that ends with a special sentinel: the **null character `'\0'`**.
 
 ```c
 char word[] = "Hello";   // stored as: H e l l o \0  → 6 bytes used, not 5!
 ```
 
-> **Trick:** `char name[20]` gives you only **19 usable characters** — the 20th slot is reserved for `'\0'`.
+> **Trick:** `char name[20]` gives you only **19 usable characters** - the 20th slot is reserved for `'\0'`.
 
 ### Reading Strings
 
 ```c
-scanf("%s", name);                    // reads ONE word only — stops at the first space
+scanf("%s", name);                    // reads ONE word only - stops at the first space
 fgets(name, sizeof(name), stdin);     // reads a FULL line, safer, prevents buffer overflow
 ```
 
-> **A favorite comparison question:** `scanf("%s", ...)` vs. `fgets(...)` — `fgets` can capture spaces, `scanf` cannot; `fgets` also guards against overflowing the buffer.
+> **A favorite comparison question:** `scanf("%s", ...)` vs. `fgets(...)` - `fgets` can capture spaces, `scanf` cannot; `fgets` also guards against overflowing the buffer.
 
-**`fgets` leaves the newline character in the string — remove it like this:**
+**`fgets` leaves the newline character in the string - remove it like this:**
 
 ```c
 fgets(name, sizeof(name), stdin);
-name[strcspn(name, "\n")] = '\0';   // memorize this exact line — it appears often in exams
+name[strcspn(name, "\n")] = '\0';   // memorize this exact line - it appears often in exams
 ```
 
 ### Traversing a String Manually
@@ -112,7 +112,7 @@ for (i = 0; name[i] != '\0'; i++) {
 }
 ```
 
-> **Key idea:** loop until you hit `'\0'` — this same pattern is how you compute length, count vowels, reverse a string, or check a palindrome by hand.
+> **Key idea:** loop until you hit `'\0'` - this same pattern is how you compute length, count vowels, reverse a string, or check a palindrome by hand.
 
 ### An Array of Strings (a 2D char array)
 
@@ -122,7 +122,7 @@ fgets(names[i], sizeof(names[i]), stdin);
 names[2][1]           // the 3rd string's 2nd character
 ```
 
-### The String Library — `#include <string.h>`
+### The String Library - `#include <string.h>`
 
 | Function | Purpose |
 |---|---|
@@ -131,7 +131,7 @@ names[2][1]           // the 3rd string's 2nd character
 | `strcat(dest, src)` | Append `src` onto the end of `dest` |
 | `strcmp(s1, s2)` | `0` if equal, positive if `s1 > s2`, negative if `s1 < s2` |
 
-> ⚠️ **Common mistake:** using `==` to compare strings — this compares their *addresses*, not their content. Always use `strcmp()`.
+> ⚠️ **Common mistake:** using `==` to compare strings - this compares their *addresses*, not their content. Always use `strcmp()`.
 
 ### Passing Strings to Functions
 
@@ -147,7 +147,7 @@ void display(char *str);
 ## 🔍 Behind the Scenes
 
 - Every string function in `<string.h>` internally does the exact same thing you'd do manually: walk forward through memory one byte at a time until it hits `'\0'`.
-- `strlen()` is not magic — it's a loop counting bytes until the terminator.
+- `strlen()` is not magic - it's a loop counting bytes until the terminator.
 - This is also *why* a "string" without a null terminator is dangerous: functions like `strlen()` or `printf("%s", ...)` will keep reading past the intended end, right into whatever memory happens to come next, until they get lucky and stumble onto a zero byte somewhere.
 
 ---
@@ -235,7 +235,7 @@ Write a function `int isPalindrome(char str[])` that returns `1` if a string rea
 <details>
 <summary>💡 Need a hint?</summary>
 
-Use two index variables — one starting at `0`, one starting at `strlen(str) - 1` — and move them toward each other, comparing characters as you go.
+Use two index variables - one starting at `0`, one starting at `strlen(str) - 1` - and move them toward each other, comparing characters as you go.
 </details>
 
 ---
@@ -246,7 +246,7 @@ Use two index variables — one starting at `0`, one starting at `strlen(str) - 
 |---|---|
 | Null-terminated strings | This exact convention is still used throughout C, C++, and many system-level APIs today, decades after it was introduced |
 | `strcmp()` | Password verification systems compare submitted text against stored values using content comparison, exactly like `strcmp`, never address comparison |
-| Buffer-safe reading (`fgets`) | Real security vulnerabilities (buffer overflows) have historically come from careless string input handling — exactly what `fgets` over `scanf("%s")` protects against |
+| Buffer-safe reading (`fgets`) | Real security vulnerabilities (buffer overflows) have historically come from careless string input handling - exactly what `fgets` over `scanf("%s")` protects against |
 
 ---
 
@@ -254,13 +254,13 @@ Use two index variables — one starting at `0`, one starting at `strlen(str) - 
 
 - **`\0` is the string's full stop.** No `\0`, no defined end.
 - **`char name[20]` = 19 usable characters + 1 reserved for `'\0'`.**
-- **Never `==` two strings — always `strcmp()`.** Addresses lie about content.
+- **Never `==` two strings - always `strcmp()`.** Addresses lie about content.
 
 ---
 
 ## 🎉 Fun Fact
 
-The null-terminated string convention was a deliberate design trade-off by Dennis Ritchie — other approaches (like storing the length explicitly alongside the text) exist and are used by other languages, but null-termination was simpler to implement in early, memory-constrained systems. That single design decision from the 1970s is directly responsible for a huge share of real-world security vulnerabilities in C code even today.
+The null-terminated string convention was a deliberate design trade-off by Dennis Ritchie - other approaches (like storing the length explicitly alongside the text) exist and are used by other languages, but null-termination was simpler to implement in early, memory-constrained systems. That single design decision from the 1970s is directly responsible for a huge share of real-world security vulnerabilities in C code even today.
 
 ---
 
@@ -268,14 +268,14 @@ The null-terminated string convention was a deliberate design trade-off by Denni
 
 ```c
 // ❌ Wrong
-if (name == "Nimal") { ... }   // compares addresses, not content — almost always false
+if (name == "Nimal") { ... }   // compares addresses, not content - almost always false
 
 // ✅ Correct
 if (strcmp(name, "Nimal") == 0) { ... }
 ```
 
 ```c
-// ❌ Wrong — scanf stops at the first space, losing "Perera"
+// ❌ Wrong - scanf stops at the first space, losing "Perera"
 char name[30];
 scanf("%s", name);   // input "Nimal Perera" → name only holds "Nimal"
 
@@ -287,16 +287,16 @@ fgets(name, sizeof(name), stdin);
 
 ## 🚫 Beginner Traps
 
-- **"`scanf("%s", ...)` reads an entire line."** False — it stops at the first space or newline.
-- **"You need `&` before a string variable name in `scanf`."** False — a string variable name already decays into an address, unlike a plain `int`.
-- **"`strlen()` counts the `'\0'` too."** False — `strlen()` returns the count of characters *before* the null terminator, not including it.
+- **"`scanf("%s", ...)` reads an entire line."** False - it stops at the first space or newline.
+- **"You need `&` before a string variable name in `scanf`."** False - a string variable name already decays into an address, unlike a plain `int`.
+- **"`strlen()` counts the `'\0'` too."** False - `strlen()` returns the count of characters *before* the null terminator, not including it.
 
 ---
 
 ## 📌 Exam Tips
 
-- Memorize the exact `fgets` + `strcspn` newline-stripping pattern — it appears constantly in exam-standard code.
-- Any `==` used to compare two strings is almost always the intended bug in a "spot the error" question — the fix is always `strcmp()`.
+- Memorize the exact `fgets` + `strcspn` newline-stripping pattern - it appears constantly in exam-standard code.
+- Any `==` used to compare two strings is almost always the intended bug in a "spot the error" question - the fix is always `strcmp()`.
 - Know that `char name[20]` allows only 19 real characters.
 
 ---
@@ -304,7 +304,7 @@ fgets(name, sizeof(name), stdin);
 ## 🎤 Interview Questions
 
 **Q: Why does C need a null terminator for strings, when arrays already know their own declared size?**
-> Because a string's *content length* can be shorter than the array's *declared size* — e.g. `char name[20]` might only hold `"Sam"`, five characters including the terminator. Without `'\0'` marking where the actual text ends, functions like `strlen()` would have no way to know where to stop.
+> Because a string's *content length* can be shorter than the array's *declared size* - e.g. `char name[20]` might only hold `"Sam"`, five characters including the terminator. Without `'\0'` marking where the actual text ends, functions like `strlen()` would have no way to know where to stop.
 
 **Q: What's the difference between `scanf("%s", ...)` and `fgets()`?**
  > `scanf("%s", ...)` reads a single whitespace-delimited token and provides no protection against buffer overflow if the input exceeds the buffer's size. `fgets()` reads up to a specified maximum length (including spaces, stopping at a newline or that limit), making it the safer choice for reading full lines of user input.
@@ -376,14 +376,14 @@ You now understand that C strings are just character arrays ending in `'\0'`, kn
 
 ## 🚀 What's Next?
 
-Next: **File Handling** — how to make your data survive after the program closes, by reading and writing to disk.
+Next: **File Handling** - how to make your data survive after the program closes, by reading and writing to disk.
 
 ---
 
 ## 📚 References
 
-- Kernighan, B. W., & Ritchie, D. M. — *The C Programming Language* (2nd Edition), Prentice Hall.
-- [cppreference.com — string.h](https://en.cppreference.com/w/c/string/byte)
+- Kernighan, B. W., & Ritchie, D. M. - *The C Programming Language* (2nd Edition), Prentice Hall.
+- [cppreference.com - string.h](https://en.cppreference.com/w/c/string/byte)
 
 ---
 

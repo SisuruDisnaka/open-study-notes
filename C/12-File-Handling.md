@@ -20,7 +20,7 @@
 ## 🌟 Why Learn This?
 
 - Every variable you've used so far lives in RAM, and RAM is wiped clean the instant your program ends.
-- If you want data to actually *survive* — a saved game, a config file, a log of transactions — it needs to live on disk, in a file.
+- If you want data to actually *survive* - a saved game, a config file, a log of transactions - it needs to live on disk, in a file.
 - File handling is how C reaches outside its own temporary memory bubble and interacts with the permanent world.
 
 ---
@@ -72,7 +72,7 @@ You should be comfortable reading/writing formatted data with `printf`/`scanf` f
 
 ## 💡 Imagine This...
 
-- Imagine a notebook you can write in during class — it stays exactly as you left it even after you go home, come back the next day, and open it again.
+- Imagine a notebook you can write in during class - it stays exactly as you left it even after you go home, come back the next day, and open it again.
 - Your program's variables are like a whiteboard: the instant class ends (the program closes), everything on it is erased.
 - A **file** is the notebook: durable, persistent, and there for you the next time you open it.
 
@@ -86,7 +86,7 @@ fp = fopen("marks.txt", "r");
 if (fp == NULL) { printf("Error opening file!\n"); return 1; }
 ```
 
-### File Modes — Memorize This Table
+### File Modes - Memorize This Table
 
 | Mode | Meaning |
 |---|---|
@@ -106,7 +106,7 @@ fscanf(fp, "%29s%d", name, &mark);       // read formatted data back
 // Note: NO & before "name" (it's a char array), YES & before &mark (it's an int)
 ```
 
-### Reading Multiple Records — a Standard Exam Pattern Worth Memorizing Whole
+### Reading Multiple Records - a Standard Exam Pattern Worth Memorizing Whole
 
 ```c
 while (fscanf(fp, "%29s%d", name, &mark) == 2) {   // returns how many items were read
@@ -136,9 +136,9 @@ fclose(fp);   // flushes/saves data, releases the file resource
 
 ## 🔍 Behind the Scenes
 
-- When you call `fopen()`, the operating system doesn't hand your program direct access to the physical disk — it creates a buffered connection managed through the `FILE` structure.
+- When you call `fopen()`, the operating system doesn't hand your program direct access to the physical disk - it creates a buffered connection managed through the `FILE` structure.
 - Your reads/writes typically go through an in-memory buffer first for efficiency, only actually touching the disk periodically or when you `fclose()` (which forces a final flush).
-- This is exactly why forgetting `fclose()` can sometimes mean your last bit of written data never actually makes it to disk — it was still sitting in the buffer when the program ended.
+- This is exactly why forgetting `fclose()` can sometimes mean your last bit of written data never actually makes it to disk - it was still sitting in the buffer when the program ended.
 
 ---
 
@@ -200,7 +200,7 @@ Kamal scored 58
 3. The file is reopened in `"r"` mode.
 4. `fscanf` reads one record at a time in a loop, stopping once it can't successfully read both a name and a mark (i.e., when it reaches the end of the file).
 
-**Why it works:** `fscanf`'s return value (the count of successfully read items) is exactly what lets the loop know when to stop — no need to guess how many records the file contains in advance.
+**Why it works:** `fscanf`'s return value (the count of successfully read items) is exactly what lets the loop know when to stop - no need to guess how many records the file contains in advance.
 
 ---
 
@@ -218,7 +218,7 @@ if (fp == NULL) {
 <details>
 <summary>💡 Reveal the answer</summary>
 
-This depends entirely on whether `data.txt` already exists in the program's working directory. `"r"` mode requires the file to already exist — if it doesn't, `fopen()` returns `NULL`, and `"Failed"` prints. This is precisely why checking against `NULL` is mandatory, not optional.
+This depends entirely on whether `data.txt` already exists in the program's working directory. `"r"` mode requires the file to already exist - if it doesn't, `fopen()` returns `NULL`, and `"Failed"` prints. This is precisely why checking against `NULL` is mandatory, not optional.
 </details>
 
 ---
@@ -236,7 +236,7 @@ Write a program that reads a list of numbers from a file (one per line) and writ
 <details>
 <summary>💡 Need a hint?</summary>
 
-You'll need two `FILE *` pointers open simultaneously — one for reading the source, one for writing the destination — and remember to `fclose()` both.
+You'll need two `FILE *` pointers open simultaneously - one for reading the source, one for writing the destination - and remember to `fclose()` both.
 </details>
 
 ---
@@ -254,21 +254,21 @@ You'll need two `FILE *` pointers open simultaneously — one for reading the so
 ## 🧠 Memory Tricks
 
 - **`r` = Read (file must exist). `w` = Write (overwrites or creates). `a` = Append (adds to the end).**
-- **Always pair `fopen` with `fclose`** — like locking the door you unlocked.
-- **`fscanf`'s return value tells you how many fields it actually read** — use it as your loop's stopping condition.
+- **Always pair `fopen` with `fclose`** - like locking the door you unlocked.
+- **`fscanf`'s return value tells you how many fields it actually read** - use it as your loop's stopping condition.
 
 ---
 
 ## 🎉 Fun Fact
 
-Unix-like systems (including Linux and macOS) follow the philosophy "everything is a file" — not just documents, but hardware devices, network sockets, and even running processes can be interacted with through the exact same `open`/`read`/`write`/`close` operations you just learned in C, just at a lower level. The file-handling mental model you built today scales up to how the entire operating system thinks.
+Unix-like systems (including Linux and macOS) follow the philosophy "everything is a file" - not just documents, but hardware devices, network sockets, and even running processes can be interacted with through the exact same `open`/`read`/`write`/`close` operations you just learned in C, just at a lower level. The file-handling mental model you built today scales up to how the entire operating system thinks.
 
 ---
 
 ## ⚠ Common Mistakes
 
 ```c
-// ❌ Wrong — no NULL check, will crash if the file doesn't exist
+// ❌ Wrong - no NULL check, will crash if the file doesn't exist
 FILE *fp = fopen("data.txt", "r");
 fscanf(fp, "%d", &x);   // crash if fp is NULL!
 
@@ -280,29 +280,29 @@ if (fp == NULL) {
 }
 fscanf(fp, "%d", &x);
 ```
-*Why:* `fopen()` returns `NULL` if it fails (missing file, permissions issue) — using that `NULL` pointer without checking leads directly to a crash.
+*Why:* `fopen()` returns `NULL` if it fails (missing file, permissions issue) - using that `NULL` pointer without checking leads directly to a crash.
 
 ---
 
 ## 🚫 Beginner Traps
 
-- **"`"w"` mode adds to the end of an existing file."** False — `"w"` mode **overwrites** the entire file's existing contents. You need `"a"` (append) to add without erasing.
-- **"Forgetting `fclose()` doesn't really matter."** False — data can remain stuck in the buffer and never actually reach the disk, and the OS may also run out of available file handles if programs never release them.
+- **"`"w"` mode adds to the end of an existing file."** False - `"w"` mode **overwrites** the entire file's existing contents. You need `"a"` (append) to add without erasing.
+- **"Forgetting `fclose()` doesn't really matter."** False - data can remain stuck in the buffer and never actually reach the disk, and the OS may also run out of available file handles if programs never release them.
 
 ---
 
 ## 📌 Exam Tips
 
-- The `if (fp == NULL)` check after `fopen()` is nearly guaranteed boilerplate in any file-handling exam question — always include it.
-- Know the exact difference between `"w"` (overwrite) and `"a"` (append) — a frequent "predict the resulting file content" question.
-- Memorize the `while (fscanf(...) == N)` pattern for reading unknown-length files — where `N` is the number of format specifiers used.
+- The `if (fp == NULL)` check after `fopen()` is nearly guaranteed boilerplate in any file-handling exam question - always include it.
+- Know the exact difference between `"w"` (overwrite) and `"a"` (append) - a frequent "predict the resulting file content" question.
+- Memorize the `while (fscanf(...) == N)` pattern for reading unknown-length files - where `N` is the number of format specifiers used.
 
 ---
 
 ## 🎤 Interview Questions
 
 **Q: Why must you always check `fopen()`'s return value?**
-> Because `fopen()` returns `NULL` if the file couldn't be opened — for example, if it doesn't exist in read mode, or there's a permissions problem — and attempting to read from or write to a `NULL` file pointer causes the program to crash.
+> Because `fopen()` returns `NULL` if the file couldn't be opened - for example, if it doesn't exist in read mode, or there's a permissions problem - and attempting to read from or write to a `NULL` file pointer causes the program to crash.
 
 **Q: What's the difference between `"w"` and `"a"` file modes?**
 > `"w"` opens a file for writing and immediately erases any existing content (or creates a new file if none exists). `"a"` opens a file for writing but preserves existing content, adding any new data to the end of the file instead.
@@ -361,27 +361,27 @@ fscanf(fp, "%d", &x);
 
 <details><summary>✅ Reveal Guidance</summary>
 
-Because it doesn't require knowing the file's length in advance — the loop naturally stops the moment `fscanf` can no longer successfully read both expected fields (whether due to reaching the end of the file or encountering malformed data), instead of relying on a hardcoded record count that might not match the actual file.
+Because it doesn't require knowing the file's length in advance - the loop naturally stops the moment `fscanf` can no longer successfully read both expected fields (whether due to reaching the end of the file or encountering malformed data), instead of relying on a hardcoded record count that might not match the actual file.
 </details>
 
 ---
 
 ## 📝 Summary
 
-You now know how to open, read, write, and safely close files, understand every file mode, and can use `fscanf()`'s return value to read an unknown number of records from a file — the standard exam pattern.
+You now know how to open, read, write, and safely close files, understand every file mode, and can use `fscanf()`'s return value to read an unknown number of records from a file - the standard exam pattern.
 
 ---
 
 ## 🚀 What's Next?
 
-Next, the final lesson of this course: **Structures** — how to group different data types together into a single, reusable custom type.
+Next, the final lesson of this course: **Structures** - how to group different data types together into a single, reusable custom type.
 
 ---
 
 ## 📚 References
 
-- Kernighan, B. W., & Ritchie, D. M. — *The C Programming Language* (2nd Edition), Prentice Hall.
-- [cppreference.com — File I/O](https://en.cppreference.com/w/c/io)
+- Kernighan, B. W., & Ritchie, D. M. - *The C Programming Language* (2nd Edition), Prentice Hall.
+- [cppreference.com - File I/O](https://en.cppreference.com/w/c/io)
 
 ---
 
