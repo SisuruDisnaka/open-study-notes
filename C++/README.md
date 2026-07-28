@@ -1,4 +1,4 @@
-# 🅲➕➕ C++ Programming
+# C++ Programming
 
 > Take everything C taught you about how computers think, and learn how to organize it into things that scale.
 
