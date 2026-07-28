@@ -34,6 +34,7 @@ Our goal is simple:
 ## 💻 Programming Languages
 
 - 📘 [C Programming](./C/README.md)
+- 🤖 [C++ Programming](./C++/README.md)
 - ☕ Java *(Coming Soon)*
 - 🐍 Python *(Coming Soon)*
 - 🟨 JavaScript *(Coming Soon)*
